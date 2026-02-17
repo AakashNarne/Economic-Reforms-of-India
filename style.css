@@ -888,106 +888,123 @@ section.fade-in,
 }
 
 /* ===================================================== */
-/* INFOGRAPHIC STYLE TIMELINE — MOBILE & TABLET ONLY */
+/* MINIMAL SNAKE TIMELINE — MOBILE & TABLET */
 /* ===================================================== */
 
 @media (max-width: 1024px) {
 
   .timeline-container {
-    overflow-x: visible !important;
+    overflow-x: hidden !important;
   }
 
   .timeline {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 4.5em;
     width: 100%;
+    padding: 3em 0;
     min-width: 0;
-    gap: 3.5em;
-    padding: 2em 0;
-    position: relative;
   }
 
-  /* Gradient flow line */
+  /* Vertical center guide line (subtle) */
   .timeline::before {
     content: '';
     position: absolute;
     left: 50%;
-    top: 0;
     transform: translateX(-50%);
-    width: 6px;
+    top: 0;
+    width: 3px;
     height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(
-      to bottom,
-      #3bb2ff,
-      #6a7bff,
-      #a75bff
-    );
+    background: #ddd;
   }
 
-  /* Timeline nodes */
+  /* Base circle */
   .timeline-event {
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     background: #fff;
-    border: 5px solid #3bb2ff;
+    border: 3px solid #000;
     border-radius: 50%;
     position: relative;
     z-index: 2;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease;
   }
 
-  /* Glow effect */
-  .timeline-event:hover,
-  .timeline-event.active {
-    transform: scale(1.15);
-    box-shadow: 0 0 15px rgba(90, 100, 255, 0.6);
+  /* Alternate positioning */
+  .timeline-event:nth-child(odd) {
+    align-self: flex-start;
+    margin-left: 8%;
   }
 
-  /* Alternating year placement */
+  .timeline-event:nth-child(even) {
+    align-self: flex-end;
+    margin-right: 8%;
+  }
+
+  /* Horizontal connector lines (creates snake look) */
+  .timeline-event:nth-child(odd)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 40px;
+    height: 2px;
+    background: #000;
+    transform: translateY(-50%);
+  }
+
+  .timeline-event:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 40px;
+    height: 2px;
+    background: #000;
+    transform: translateY(-50%);
+  }
+
+  /* Year text */
   .timeline-event:nth-child(odd)::after {
     content: attr(data-year);
     position: absolute;
-    right: 55px;
+    left: 60px;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1rem;
     white-space: nowrap;
-    color: #333;
-    text-align: right;
   }
 
   .timeline-event:nth-child(even)::after {
     content: attr(data-year);
     position: absolute;
-    left: 55px;
+    right: 60px;
     top: 50%;
     transform: translateY(-50%);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1rem;
     white-space: nowrap;
-    color: #333;
-    text-align: left;
+    text-align: right;
   }
 
-  /* Remove desktop hover scaling */
+  /* Minimal hover */
   .timeline-event:hover {
-    background: #fff;
+    transform: scale(1.15);
   }
 
-  /* Detail box styling */
+  /* Detail box remains clean */
   #timeline-detail {
     margin-top: 2.5em;
     padding: 1.2em;
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    font-size: 1.05rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: none;
+    font-size: 1rem;
     line-height: 1.6;
-    max-width: 90%;
+    max-width: 92%;
     text-align: center;
   }
 
@@ -997,8 +1014,8 @@ section.fade-in,
 @media (max-width: 600px) {
 
   .timeline-event {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
   }
 
   .timeline-event:nth-child(odd)::after,
