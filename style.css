@@ -888,79 +888,121 @@ section.fade-in,
 }
 
 /* ===================================================== */
-/* FINAL CLEAN MOBILE + TABLET TIMELINE (NO SIDE SCROLL) */
+/* INFOGRAPHIC STYLE TIMELINE — MOBILE & TABLET ONLY */
 /* ===================================================== */
 
 @media (max-width: 1024px) {
 
-  /* Remove horizontal scroll completely */
   .timeline-container {
     overflow-x: visible !important;
   }
 
-  /* Convert timeline to vertical layout */
   .timeline {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
-    min-width: 0;   /* CRITICAL — removes 900px overflow */
-    gap: 3em;
-    padding-left: 2.5em;
+    min-width: 0;
+    gap: 3.5em;
+    padding: 2em 0;
     position: relative;
   }
 
-  /* Create vertical line */
+  /* Gradient flow line */
   .timeline::before {
     content: '';
     position: absolute;
-    left: 20px;
+    left: 50%;
     top: 0;
-    width: 4px;
+    transform: translateX(-50%);
+    width: 6px;
     height: 100%;
-    background: #000;
-    transform: none;
+    border-radius: 10px;
+    background: linear-gradient(
+      to bottom,
+      #3bb2ff,
+      #6a7bff,
+      #a75bff
+    );
   }
 
-  /* Make dots bigger for touch */
+  /* Timeline nodes */
   .timeline-event {
-    width: 28px;
-    height: 28px;
-    margin-left: 6px;
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border: 5px solid #3bb2ff;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
-  /* Move year text to right */
-  .timeline-event::after {
+  /* Glow effect */
+  .timeline-event:hover,
+  .timeline-event.active {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(90, 100, 255, 0.6);
+  }
+
+  /* Alternating year placement */
+  .timeline-event:nth-child(odd)::after {
+    content: attr(data-year);
+    position: absolute;
+    right: 55px;
     top: 50%;
-    left: 60px;
     transform: translateY(-50%);
+    font-weight: 700;
     font-size: 1rem;
+    white-space: nowrap;
+    color: #333;
+    text-align: right;
   }
 
-  /* Disable hover scaling */
-  .timeline-event:hover {
-    transform: none;
-  }
-
-  /* Improve detail spacing */
-  #timeline-detail {
-    margin-top: 2em;
-    font-size: 1.05rem;
-    padding: 1em;
+  .timeline-event:nth-child(even)::after {
+    content: attr(data-year);
+    position: absolute;
+    left: 55px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 1rem;
+    white-space: nowrap;
+    color: #333;
     text-align: left;
   }
+
+  /* Remove desktop hover scaling */
+  .timeline-event:hover {
+    background: #fff;
+  }
+
+  /* Detail box styling */
+  #timeline-detail {
+    margin-top: 2.5em;
+    padding: 1.2em;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 90%;
+    text-align: center;
+  }
+
 }
 
 /* Smaller phones */
 @media (max-width: 600px) {
 
-  .timeline {
-    padding-left: 2em;
-    gap: 2.5em;
+  .timeline-event {
+    width: 28px;
+    height: 28px;
   }
 
-  .timeline-event::after {
-    left: 55px;
+  .timeline-event:nth-child(odd)::after,
+  .timeline-event:nth-child(even)::after {
     font-size: 0.95rem;
   }
 
