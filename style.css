@@ -1,0 +1,1026 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fafafa;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5em;
+}
+
+header,
+footer {
+  padding: 1em 2em;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5em;
+  list-style: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: #666;
+}
+
+#hero {
+  padding: 4em 2em;
+  text-align: center;
+}
+
+#hero h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+}
+
+#hero button {
+  padding: 12px 28px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#hero button:hover {
+  background: #333;
+  color: #fff;
+}
+
+.cards {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin: 2em auto;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 1em;
+}
+
+.card {
+  border: 1px solid #eee;
+  padding: 2em;
+  text-align: center;
+  width: 350px;
+  max-width: 450px;
+  background: #fff;
+  text-decoration: none;
+  color: #333;
+  border-radius: 8px;
+  transform-style: preserve-3d;
+  transform: translateY(0) rotateX(0) rotateY(0) scale(1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  flex: 1 1 400px;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 500px;
+    padding: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5em;
+  }
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid #eee;
+  margin-top: 3em;
+  padding: 2em;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.8em;
+  margin-top: 0.3em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 1em;
+}
+
+form button {
+  padding: 12px 28px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background: #333;
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  nav ul {
+    gap: 1em;
+  }
+
+  #hero h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav h1 {
+    margin-bottom: 0.5em;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8em;
+    display: none;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav h1 {
+    font-size: 1.2rem;
+  }
+
+  #hero h2 {
+    font-size: 1.4rem;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+}
+
+section,
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.fade-in,
+.card.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    margin-left: auto;
+    color: #333;
+  }
+}
+
+/* ------------------------- */
+/* PAGE HEADER (ALL TOPICS) */
+/* ------------------------- */
+.page-header {
+  text-align: center;
+  padding: 3em 1em 2.5em;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.page-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  color: #222;
+}
+
+.page-header p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ------------------------- */
+/* OPTIONAL — COLOR VARIANTS PER TOPIC */
+/* ------------------------- */
+.page-header.background { background: #ecc9c9; }    /* Topic 1 */
+.page-header.reforms { background: #b9e2f5; }       /* Topic 2 */
+.page-header.impact { background: #d2a993; }        /* Topic 3 */
+.page-header.people { background: #fff192; }        /* Topic 4 */
+.page-header.resources { background: #ddf6d2; }        /* Topic 5 */
+
+
+.content {
+  max-width: 900px;
+  margin: 3em auto;
+  padding: 0.05em 2.5em;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.content h3 {
+  text-align: left;
+  margin-top: 1.5em;
+  color: #222;
+  border-left: 4px solid #333;
+  padding-left: 0.5em;
+}
+
+.content p {
+  text-align: justify;
+  margin-bottom: 1em;
+  color: #444;
+  font-size: 1.05rem;
+}
+
+.content ul {
+  margin: 1em 0 1.5em 2em;
+  color: #444;
+  line-height: 1.6;
+}
+
+.content ul li {
+  margin-bottom: 0.5em;
+}
+
+.next-section {
+  text-align: center;
+  margin: 3em 0;
+}
+
+.next-button {
+  display: inline-block;
+  padding: 0.8em 1.8em;
+  border: 1px solid #333;
+  background: transparent;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover {
+  background: #333;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1em;
+    margin: 2em 1em;
+  }
+
+  .page-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+  }
+}
+
+.timeline-section {
+  max-width: 1000px;
+  margin: 3em auto;
+  padding: 1em;
+  text-align: center;
+}
+
+.timeline-container {
+  overflow-x: auto;
+  padding: 2em 0;
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 4em;
+  position: relative;
+  min-width: 900px;
+  padding: 1em 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #000;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-event {
+  width: 20px;
+  height: 20px;
+  background: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.timeline-event::after {
+  content: attr(data-year);
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.timeline-event:hover {
+  transform: scale(1.6);
+  background: #007bff;
+}
+
+.timeline-detail {
+  margin-top: 1em;
+  font-size: 1rem;
+  color: #555;
+  min-height: 2em;
+  padding: 0 1em;
+  line-height: 1.5;
+}
+
+.timeline-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.timeline-section {
+  text-align: center;
+  padding: 4em 2em;
+  background-color: #fafafa;
+}
+
+.timeline-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2em;
+  color: #222;
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: visible;
+  padding: 2em 0;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+
+.timeline-event {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.timeline-event::after {
+  content: attr(data-year);
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.timeline-event:hover {
+  transform: scale(1.6);
+  background-color: #0077ff;
+  z-index: 3;
+}
+
+#timeline-detail {
+  margin-top: 1em;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  min-height: 3em;
+}
+
+.timeline-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#hero {
+  padding-bottom: 1em !important;
+  margin-bottom: 0 !important;
+}
+
+.timeline-section {
+  margin-top: 0.5em !important;
+  padding-top: 1em !important;
+}
+
+.timeline-detail {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.3em !important;
+  padding: 0.3em 1em !important;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#explore {
+  margin-top: 0.2em !important;
+  padding-top: 0.3em !important;
+}
+
+/* ------------------------- */
+/* QUIZ FORM STYLING — FINAL CLEAN FIX */
+/* ------------------------- */
+
+#quiz-form {
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#quiz-form ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: question;
+}
+
+#quiz-form li {
+  margin-bottom: 2em;
+  padding: 1.5em;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================ */
+/* QUESTION + NUMBER ALIGNMENT FIX */
+/* ================================ */
+
+.question-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6em;
+  margin-bottom: 0.8em;
+}
+
+.question-number {
+  flex-shrink: 0;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.question-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  color: #222;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ================================ */
+/* ANSWER ALIGNMENT FIX */
+/* ================================ */
+
+.answer-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-left: 1.8em;
+}
+
+.answer-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.answer-options input[type="radio"] {
+  accent-color: #333;
+  transform: scale(1.1);
+  cursor: pointer;
+  margin: 0;
+}
+
+/* ================================ */
+/* SUBMIT BUTTON */
+/* ================================ */
+
+#quiz-form button {
+  display: block;
+  margin: 2em auto 0;
+  padding: 12px 28px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#quiz-form button:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* ================================ */
+/* FEEDBACK SECTION */
+/* ================================ */
+
+.feedback-section {
+  margin-top: 3em;
+  padding-top: 2em;
+  border-top: 1px solid #ddd;
+  font-family: 'Lato', sans-serif;
+}
+
+.feedback-section h3 {
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+.feedback-section textarea {
+  width: 100%;
+  padding: 0.8em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 0.5em;
+  resize: vertical;
+}
+
+.feedback-section button {
+  padding: 0.6em 1.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid #333;
+  background: transparent;
+  color: #333;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.feedback-section button:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* ================================ */
+/* CUSTOM QUIZ BUTTONS */
+/* ================================ */
+.quiz-btn {
+  display: block;
+  margin: 5px 0;
+  padding: 10px 15px;
+  border: 2px solid #333;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.quiz-btn:hover {
+  background: #f0f0f0;
+}
+
+.quiz-btn.selected {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}
+
+.quiz-result {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 2em;
+  transition: color 0.4s ease;
+}
+
+.quiz-result.excellent { color: #2ecc71; } /* Green */
+.quiz-result.good { color: #f1c40f; }     /* Yellow-Gold */
+.quiz-result.average { color: #e67e22; }  /* Orange */
+.quiz-result.poor { color: #e74c3c; }     /* Red */
+
+
+/* ================================ */
+/* QUIZ SPACING FIXES */
+/* ================================ */
+
+/* Spacing at the top of each question (first button from card top) */
+.question {
+  margin-top: 1.5em;       /* Space from top of card */
+  margin-bottom: 5em;      /* Space between questions */
+}
+
+/* Space between question header and buttons */
+.question-header {
+  margin-bottom: 2em;
+}
+
+/* Space between buttons */
+.answer-options .quiz-btn {
+  margin-bottom: 0.5em;
+}
+
+/* Extra spacing after the last button of each question */
+.answer-options .quiz-btn:last-child {
+  margin-bottom: 2em; /* Space before next question */
+}
+
+/* ================================ */
+/* FIXED SELECTED STATE (BLACK + WHITE) */
+/* ================================ */
+.quiz-btn.selected {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+.quiz-btn.selected:hover {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+/* ---------- GALLERY SECTION ---------- */
+.gallery {
+  text-align: center;
+  padding: 2em 1em;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5em;
+  justify-items: center;
+}
+
+.gallery-grid .person {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid .person:hover {
+  transform: scale(1.05);
+}
+
+.gallery-grid img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-grid p {
+  margin-top: 0.6em;
+  font-weight: 600;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+}
+
+/* ---------- MODAL STYLING ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  text-align: center;
+  color: #fff;
+  max-width: 90%;
+}
+
+.modal-content h2 {
+  margin-bottom: 1em;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+}
+
+.modal-content img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.close:hover {
+  color: #ff5252;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* ===================================================== */
+/* MOBILE & TABLET TIMELINE FIX (VERTICAL VERSION) */
+/* ===================================================== */
+
+@media (max-width: 1024px) {
+
+  .timeline-container {
+    overflow: visible !important;
+  }
+
+  .timeline {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 3em !important;
+    min-width: unset !important;
+    padding-left: 2.5em !important;
+    position: relative;
+  }
+
+  /* Vertical timeline line */
+  .timeline::before {
+    top: 0 !important;
+    left: 20px !important;
+    width: 4px !important;
+    height: 100% !important;
+    transform: none !important;
+  }
+
+  /* Bigger clickable dots for touch */
+  .timeline-event {
+    width: 28px !important;
+    height: 28px !important;
+    margin-left: 6px !important;
+  }
+
+  /* Move year text to the right of dot */
+  .timeline-event::after {
+    top: 50% !important;
+    left: 60px !important;
+    transform: translateY(-50%) !important;
+    font-size: 1rem !important;
+  }
+
+  /* Disable hover scaling on touch devices */
+  .timeline-event:hover {
+    transform: none !important;
+  }
+
+  /* Detail text spacing */
+  #timeline-detail {
+    margin-top: 2em !important;
+    font-size: 1.05rem !important;
+    padding: 1em !important;
+  }
+}
+
+/* Smaller phones refinement */
+@media (max-width: 600px) {
+
+  .timeline {
+    padding-left: 2em !important;
+  }
+
+  .timeline-event::after {
+    left: 55px !important;
+    font-size: 0.95rem !important;
+  }
+
+}
+
+/* ===================================================== */
+/* RESPONSIVE TIMELINE FIX — NO SIDE SCROLL */
+/* ===================================================== */
+
+@media (max-width: 1024px) {
+
+  /* Remove horizontal scroll */
+  .timeline-container {
+    overflow-x: hidden !important;
+  }
+
+  /* Convert to vertical timeline */
+  .timeline {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 3em !important;
+    width: 100% !important;
+    min-width: unset !important;   /* Removes 900px issue */
+    padding-left: 2.5em !important;
+    position: relative;
+  }
+
+  /* Vertical line */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #000;
+    transform: none;
+  }
+
+  /* Bigger clickable dots */
+  .timeline-event {
+    width: 28px !important;
+    height: 28px !important;
+    margin-left: 6px !important;
+  }
+
+  /* Move year text to right side */
+  .timeline-event::after {
+    top: 50% !important;
+    left: 60px !important;
+    transform: translateY(-50%) !important;
+    font-size: 1rem !important;
+  }
+
+  /* Disable hover scaling */
+  .timeline-event:hover {
+    transform: none !important;
+  }
+
+  /* Detail section styling */
+  #timeline-detail {
+    margin-top: 2em !important;
+    font-size: 1.05rem !important;
+    padding: 1em !important;
+    text-align: left !important;
+  }
+}
+
+/* Extra small phone refinement */
+@media (max-width: 600px) {
+
+  .timeline {
+    padding-left: 2em !important;
+    gap: 2.5em !important;
+  }
+
+  .timeline-event::after {
+    left: 55px !important;
+    font-size: 0.95rem !important;
+  }
+
+}

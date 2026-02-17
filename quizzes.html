@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quizzes | India’s 1991 Economic Reforms</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <nav>
+      <h1>India’s 1991 Reforms</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic1.html">Background & Causes</a></li>
+        <li><a href="topic2.html">Key Reforms</a></li>
+        <li><a href="topic3.html">Impact & Outcomes</a></li>
+        <li><a href="topic4.html">Key People</a></li>
+        <li><a href="topic5.html">Research & Sources</a></li>
+        <li><a href="quizzes.html" class="active">Quizzes</a></li>
+      </ul>
+      <button class="nav-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="fade-in" style="padding: 3em 1em;">
+    <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <h2>Interactive Quizzes</h2>
+      <p style="font-size: 1.1rem; color: #444;">
+        Test your understanding of India’s 1991 Economic Reforms!  
+        Each quiz focuses on one of the main topics covered on this website — from the causes and key reforms to their impact and the people who made them possible.
+      </p>
+      <p style="font-size: 1rem; color: #555; margin-top: 1em;">
+        Choose a quiz below to begin. Each has 8 multiple-choice questions and a feedback section at the end.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quiz Selection Cards -->
+  <section id="explore" style="margin-top: 0; padding-top: 1em;">
+    <h2>Choose a Quiz</h2>
+    <div class="cards">
+      <a href="quiz1.html" class="card">
+        <h3>Quiz 1 – Background & Causes</h3>
+        <p>Explore the factors and historical events that led to India’s 1991 reforms.</p>
+      </a>
+
+      <a href="quiz2.html" class="card">
+        <h3>Quiz 2 – Key Reforms</h3>
+        <p>Test your understanding of the Liberalization, Privatization, and Globalization (LPG) policies.</p>
+      </a>
+
+      <a href="quiz3.html" class="card">
+        <h3>Quiz 3 – Impact & Outcomes</h3>
+        <p>See how India’s reforms reshaped its economy, trade, and global position.</p>
+      </a>
+
+      <a href="quiz4.html" class="card">
+        <h3>Quiz 4 – Key People</h3>
+        <p>Meet the visionaries who drove India’s transformation — from policymakers to economists.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Personal Project | India’s 1991 Economic Reforms</p>
+  </footer>
+
+  <!-- JS for fade-in and nav toggle -->
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+
+    const faders = document.querySelectorAll("section, .card");
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("fade-in");
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+</body>
+</html>

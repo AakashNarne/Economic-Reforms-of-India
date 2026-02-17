@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research & Sources | India’s 1991 Economic Reforms</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <nav>
+      <h1>India’s 1991 Reforms</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic1.html">Background & Causes</a></li>
+        <li><a href="topic2.html">Key Reforms</a></li>
+        <li><a href="topic3.html">Impact & Outcomes</a></li>
+        <li><a href="topic4.html">Key People</a></li>
+        <li><a href="topic5.html" class="active">Research & Sources</a></li>
+        <li><a href="quizzes.html">Quizzes</a></li>
+      </ul>
+      <button class="nav-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header resources fade-in">
+    <h2>Research & Sources</h2>
+    <p>All references and materials used to build this website — carefully selected for credibility, depth, and relevance.</p>
+  </section>
+
+  <!-- Hero Section -->
+  <section id="hero" class="fade-in">
+    <div class="hero-content" style="max-width: 900px; margin: 0 auto; text-align: center; padding: 2em 1em;">
+      <h2 style="font-size: 2.2rem; margin-bottom: 1em;">Foundations of Research</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: #444;">
+        This project draws upon a wide range of academic, governmental, and media sources that document India’s 1991 Economic Reforms.
+        The materials listed below include primary and secondary sources, ensuring factual accuracy and multiple perspectives on
+        the Liberalization, Privatization, and Globalization (LPG) era.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content Section -->
+  <section class="content fade-in" style="background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin: 2em auto; max-width: 900px;">
+    
+    <h3>Books and Academic Texts</h3>
+    <ul>
+      <li><strong>“India’s Economic Reforms: 1991–2001”</strong> – Analysis of policy changes and outcomes over the first decade after liberalization.</li>
+      <li><strong>“The Indian Economy: Problems and Prospects”</strong> – Explains economic challenges leading up to the reforms.</li>
+      <li><strong>“Economic Reforms in India: A Historical Perspective”</strong> – Traces the evolution of policy and key figures behind the reforms.</li>
+    </ul>
+
+    <h3>Research Papers and Journals</h3>
+    <ul>
+      <li><strong>Journal of Economic Perspectives</strong> – Studies analyzing the effects of India’s liberalization and globalization.</li>
+      <li><strong>Economic and Political Weekly (EPW)</strong> – Articles on the social and economic impacts of the reforms.</li>
+      <li><strong>IMF and World Bank Reports</strong> – Detailed data and global assessments of India’s economic restructuring.</li>
+    </ul>
+
+    <h3>Government Reports</h3>
+    <ul>
+      <li><strong>Ministry of Finance – Annual Economic Survey</strong> – Yearly summaries of fiscal trends and reform performance.</li>
+      <li><strong>Planning Commission Reports</strong> – Evaluations of five-year plans, industrial development, and growth outcomes.</li>
+      <li><strong>Reserve Bank of India Publications</strong> – Insights into monetary and financial sector reforms.</li>
+    </ul>
+
+    <h3>Online Sources</h3>
+    <ul>
+      <li><strong>Government Portals</strong> – Official statistics, policy press releases, and reform documents.</li>
+      <li><strong>The 1991 Project</strong> – Analytical essays on India’s economic transformation. (<a href="https://the1991project.com" target="_blank">the1991project.com</a>)</li>
+      <li><strong>Academic Databases</strong> – JSTOR, ResearchGate, and Google Scholar articles related to India’s reforms.</li>
+    </ul>
+
+    <h3>Interviews and Media</h3>
+    <ul>
+      <li>Televised interviews and speeches by <strong>P. V. Narasimha Rao</strong> and <strong>Dr. Manmohan Singh</strong>.</li>
+      <li>Documentaries and expert panels discussing the economic transformation of the 1990s.</li>
+      <li>Archived news coverage from <em>The Hindu</em> and <em>Times of India</em> providing firsthand perspectives.</li>
+    </ul>
+
+    <h3>Complete MLA 9 Source Citations</h3>
+    <p>For the full list of detailed MLA 9 citations with annotations, visit the link below:</p>
+    <p style="text-align:center; margin-top:0.8em;">
+      <a href="https://docs.google.com/document/d/15luOSOkE9c27VhxtuLsYHSWDta5kmu2wX3i17Bw3zr4/edit?usp=sharing" 
+      target="_blank" style="color:#0077ff; font-family:'Playfair Display',serif; font-weight:600;">
+        → View Complete Source Document
+      </a>
+    </p>
+
+    <div class="next-section" style="text-align: center; margin-top: 2.5em;">
+      <a href="quizzes.html" class="next-button">Next: Quizzes →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Personal Project | India’s 1991 Economic Reforms</p>
+  </footer>
+
+  <!-- JS for nav + fade-in -->
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+
+    // Fade-in animation fix
+    const faders = document.querySelectorAll(".fade-in");
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  </script>
+</body>
+</html>

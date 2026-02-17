@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Key People | India’s 1991 Economic Reforms</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <nav>
+      <h1>India’s 1991 Reforms</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="topic1.html">Background & Causes</a></li>
+        <li><a href="topic2.html">Key Reforms</a></li>
+        <li><a href="topic3.html">Impact & Outcomes</a></li>
+        <li><a href="topic4.html" class="active">Key People</a></li>
+        <li><a href="topic5.html">Research & Sources</a></li>
+        <li><a href="quizzes.html">Quizzes</a></li>
+      </ul>
+      <button class="nav-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header people fade-in">
+    <h2>Key People Behind the 1991 Reforms</h2>
+    <p>The architects of India’s 1991 Economic Reforms — visionary leaders and experts who transformed crisis into opportunity.</p>
+  </section>
+
+  <!-- Main Content Section -->
+  <section class="content fade-in" style="background: #fff; padding: 2em; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin: 2em auto; max-width: 900px;">
+    <h3>P. V. Narasimha Rao – Prime Minister (1991–1996)</h3>
+    <p>Rao provided decisive political leadership and courageously backed bold economic reforms during a period of severe crisis. 
+        He navigated political opposition, coordinated cabinet consensus, and facilitated legislative approvals for critical measures. 
+        His pragmatic approach and vision ensured that reforms were implemented efficiently, earning him recognition as the “Father of 
+        Economic Reforms” in India.</p>
+
+    <h3>Dr. Manmohan Singh – Finance Minister</h3>
+    <p>As the chief architect of India’s economic transformation, Dr. Singh designed policies that liberalized trade, promoted 
+        foreign investment, and stabilized the national economy. His expertise in macroeconomics, banking reforms, and fiscal policy 
+        helped restore investor confidence. Dr. Singh also introduced structural adjustments, including de-licensing of industries and 
+        modernization of public financial institutions, which became key pillars of long-term growth.</p>
+
+    <h3>Key Advisors and Bureaucrats</h3>
+    <p>Senior bureaucrats and policy advisors converted high-level policy directives into actionable programs. Their contributions 
+        included drafting new industrial policies, designing frameworks for disinvestment, overseeing taxation reforms, and ensuring 
+        compliance. Their strategic implementation facilitated smooth transitions in trade, banking, and investment sectors without 
+        causing economic shocks.</p>
+
+    <h3>Influential Economists and Think Tanks</h3>
+    <p>Renowned economists and think tanks provided critical analysis, modeling, and global insights to guide reforms. They evaluated 
+        the potential impact of liberalization, privatization, and globalization policies, recommended phased implementation strategies, 
+        and offered solutions to mitigate social and economic disruptions. Their work enabled policymakers to design reforms that balanced 
+        growth, equity, and stability, ensuring sustainable progress.</p>
+
+    <h3>Legacy and Global Recognition</h3>
+    <p>The collaborative efforts of these key individuals not only stabilized India’s economy but also charted a roadmap for long-term 
+        growth and global engagement. Internationally, these reformers are lauded for transforming India into an open-market economy, 
+        attracting investment, and enhancing competitiveness. Their legacy continues to influence contemporary policy-making and economic 
+        planning in India.</p>
+
+    <div class="next-section" style="text-align: center; margin-top: 2em;">
+      <a href="topic5.html" class="next-button">Next: Research & Sources →</a>
+    </div>
+  </section>
+
+  <!-- Key People Gallery -->
+  <section class="gallery fade-in" style="max-width: 900px; margin: 3em auto; text-align: center;">
+    <h3 style="margin-bottom: 1em;">Gallery of Key Reformers</h3>
+    <div class="gallery-grid">
+      <div class="person" onclick="openModal('images/pv narsimha rao.jpg', 'P. V. Narasimha Rao')">
+        <img src="images/pv narsimha rao.jpg" alt="P. V. Narasimha Rao">
+        <p>P. V. Narasimha Rao</p>
+      </div>
+      <div class="person" onclick="openModal('images/dr  manmohan singh.jpg', 'Dr. Manmohan Singh')">
+        <img src="images/dr  manmohan singh.jpg" alt="Dr. Manmohan Singh">
+        <p>Dr. Manmohan Singh</p>
+      </div>
+      <div class="person" onclick="openModal('images/MontekSingh.webp', 'Montek Singh Ahluwalia')">
+        <img src="images/MontekSingh.webp" alt="Montek Singh Ahluwalia">
+        <p>Montek Singh Ahluwalia</p>
+      </div>
+      <div class="person" onclick="openModal('images/p chidambaram.jpg', 'P. Chidambaram')">
+        <img src="images/p chidambaram.jpg" alt="P. Chidambaram">
+        <p>P. Chidambaram</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal (Popup Image) -->
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <h2 id="modalName"></h2>
+      <img id="modalImg" src="" alt="">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Personal Project | India’s 1991 Economic Reforms</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+
+    // Fade-in animation
+    const faders = document.querySelectorAll(".fade-in");
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    // Modal functions
+    function openModal(imageSrc, name) {
+      document.getElementById("modalImg").src = imageSrc;
+      document.getElementById("modalName").textContent = name;
+      document.getElementById("imageModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
