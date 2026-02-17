@@ -222,28 +222,28 @@ form button:hover {
 }
 
 /* ============================= */
-/* SAFE FADE-IN SYSTEM */
+/* ULTRA SAFE FADE-IN SYSTEM */
 /* ============================= */
 
-/* Default: everything visible */
+/* Everything visible by default */
 section,
 .card {
   opacity: 1;
   transform: none;
-}
-
-/* Only hide if JS successfully loads */
-.js-enabled section,
-.js-enabled .card {
-  opacity: 0;
-  transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.js-enabled section.fade-in,
-.js-enabled .card.fade-in {
+/* Only animate when fade-in class is added */
+section.fade-in,
+.card.fade-in {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Initial hidden state only applied by JS */
+.fade-hidden {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .nav-toggle {
