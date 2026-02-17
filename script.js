@@ -1,19 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  // Tell CSS that JS loaded successfully
+  document.body.classList.add("js-enabled");
+
   // -----------------------
   // Mobile nav toggle
   // -----------------------
 
-  const navToggle = document.createElement("button");
-  navToggle.textContent = "☰";
-  navToggle.classList.add("nav-toggle");
+  const navElement = document.querySelector("nav");
+  const navList = document.querySelector("nav ul");
 
-  const nav = document.querySelector("nav ul");
-  if (nav) {
-    document.querySelector("nav").insertBefore(navToggle, nav);
+  if (navElement && navList) {
+
+    const navToggle = document.createElement("button");
+    navToggle.textContent = "☰";
+    navToggle.classList.add("nav-toggle");
+
+    navElement.insertBefore(navToggle, navList);
 
     navToggle.addEventListener("click", () => {
-      nav.classList.toggle("show");
+      navList.classList.toggle("show");
     });
   }
 
@@ -26,9 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute("href"));
       if (!target) return;
-      target.scrollIntoView({
-        behavior: "smooth"
-      });
+      target.scrollIntoView({ behavior: "smooth" });
     });
   });
 
@@ -40,11 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if ("IntersectionObserver" in window) {
 
-    const appearOptions = {
-      threshold: 0.2,
-      rootMargin: "0px 0px -50px 0px"
-    };
-
     const appearOnScroll = new IntersectionObserver(function(
       entries,
       observer
@@ -54,61 +53,66 @@ document.addEventListener("DOMContentLoaded", function () {
         entry.target.classList.add("fade-in");
         observer.unobserve(entry.target);
       });
-    }, appearOptions);
+    }, {
+      threshold: 0.15
+    });
 
     faders.forEach(fader => {
       appearOnScroll.observe(fader);
     });
 
   } else {
-    // Fallback for older browsers
+    // Fallback if IntersectionObserver fails
     faders.forEach(fader => {
       fader.classList.add("fade-in");
     });
   }
 
   // -------------------------------------
-  // Smooth, elegant 3D card hover effect
+  // Smooth 3D card hover effect (Desktop only)
   // -------------------------------------
 
-  const cards = document.querySelectorAll('.card');
+  if (window.innerWidth > 768) {
 
-  cards.forEach(card => {
-    let yPos = 0;
-    let target = 0;
-    let animId = null;
+    const cards = document.querySelectorAll('.card');
 
-    const animate = () => {
-      const speed = target < yPos ? 0.08 : 0.15;
-      yPos += (target - yPos) * speed;
+    cards.forEach(card => {
+      let yPos = 0;
+      let target = 0;
+      let animId = null;
 
-      card.style.transform =
-        `translateY(${yPos}px) rotateX(${yPos * 0.15}deg) rotateY(${yPos * 0.15}deg) scale(${1 + Math.abs(yPos) * 0.004})`;
+      const animate = () => {
+        const speed = target < yPos ? 0.08 : 0.15;
+        yPos += (target - yPos) * speed;
 
-      card.style.boxShadow =
-        `0 ${4 + Math.abs(yPos) * 2}px ${10 + Math.abs(yPos) * 2}px rgba(0,0,0,0.2)`;
+        card.style.transform =
+          `translateY(${yPos}px) rotateX(${yPos * 0.15}deg) rotateY(${yPos * 0.15}deg) scale(${1 + Math.abs(yPos) * 0.004})`;
 
-      if (Math.abs(target - yPos) < 0.2) {
-        animId = null;
-        return;
-      }
+        card.style.boxShadow =
+          `0 ${4 + Math.abs(yPos) * 2}px ${10 + Math.abs(yPos) * 2}px rgba(0,0,0,0.2)`;
 
-      animId = requestAnimationFrame(animate);
-    };
+        if (Math.abs(target - yPos) < 0.2) {
+          animId = null;
+          return;
+        }
 
-    card.addEventListener('mouseenter', () => {
-      target = -25;
-      if (!animId) animId = requestAnimationFrame(animate);
+        animId = requestAnimationFrame(animate);
+      };
+
+      card.addEventListener('mouseenter', () => {
+        target = -25;
+        if (!animId) animId = requestAnimationFrame(animate);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        target = 0;
+        if (!animId) animId = requestAnimationFrame(animate);
+      });
     });
-
-    card.addEventListener('mouseleave', () => {
-      target = 0;
-      if (!animId) animId = requestAnimationFrame(animate);
-    });
-  });
+  }
 
   // ---------
-  // Timeline (Desktop Hover + Mobile Tap)
+  // Timeline (Desktop hover + Mobile tap)
   // ---------
 
   const timelineEvents = document.querySelectorAll('.timeline-event');
@@ -118,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     timelineEvents.forEach(event => {
 
-      // Desktop hover
       event.addEventListener('mouseenter', () => {
         detailBox.textContent =
           `${event.dataset.year}: ${event.dataset.detail}`;
@@ -129,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
           'Hover or tap a year to see details';
       });
 
-      // Mobile tap
       event.addEventListener('click', () => {
         detailBox.textContent =
           `${event.dataset.year}: ${event.dataset.detail}`;
