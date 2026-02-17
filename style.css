@@ -374,21 +374,29 @@ section.fade-in,
 }
 
 /* ===================================================== */
-/* CLEAN SNAKE TIMELINE — MOBILE & TABLET */
+/* PROFESSIONAL MOBILE SNAKE TIMELINE */
 /* ===================================================== */
 
 @media (max-width: 1024px) {
 
   .timeline {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 6em;                 /* more vertical space */
-    padding: 4em 0;
-    position: relative;
+    gap: 4em;
+    padding: 3em 0;
   }
 
+  /* Center vertical spine */
   .timeline::before {
-    display: none;
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: #000;
   }
 
   .timeline-event {
@@ -400,33 +408,17 @@ section.fade-in,
     position: relative;
   }
 
-  /* Alternate left-right positioning */
+  /* Alternate sides */
   .timeline-event:nth-child(odd) {
-    margin-left: 15%;
+    align-self: flex-start;
+    margin-left: calc(50% - 10px);
+    transform: translateX(-150%);
   }
 
   .timeline-event:nth-child(even) {
-    margin-left: 65%;
-  }
-
-  /* CURVE CONNECTORS */
-  .timeline-event:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    width: 180px;
-    height: 60px;             /* lower height = cleaner curve */
-    border-bottom: 2px solid #000;
-    border-radius: 60px;
-    top: 20px;
-  }
-
-  .timeline-event:nth-child(odd)::before {
-    left: 10px;
-  }
-
-  .timeline-event:nth-child(even)::before {
-    right: 10px;
-    transform: scaleX(-1);
+    align-self: flex-end;
+    margin-right: calc(50% - 10px);
+    transform: translateX(150%);
   }
 
   /* Year text */
@@ -441,20 +433,17 @@ section.fade-in,
   }
 
   .timeline-event:nth-child(odd)::after {
-    left: 35px;
-  }
-
-  .timeline-event:nth-child(even)::after {
-    right: 35px;
+    right: 30px;
     text-align: right;
   }
 
-  /* Detail box */
+  .timeline-event:nth-child(even)::after {
+    left: 30px;
+  }
+
   #timeline-detail {
-    margin-top: 4em;
-    padding: 1em;
+    margin-top: 3em;
     font-size: 0.95rem;
-    line-height: 1.6;
     max-width: 90%;
   }
 }
