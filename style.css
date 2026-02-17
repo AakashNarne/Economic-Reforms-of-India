@@ -876,100 +876,29 @@ section.fade-in,
 }
 
 /* ===================================================== */
-/* MOBILE & TABLET TIMELINE FIX (VERTICAL VERSION) */
+/* FINAL CLEAN MOBILE + TABLET TIMELINE (NO SIDE SCROLL) */
 /* ===================================================== */
 
 @media (max-width: 1024px) {
 
+  /* Remove horizontal scroll completely */
   .timeline-container {
-    overflow: visible !important;
+    overflow-x: visible !important;
   }
 
+  /* Convert timeline to vertical layout */
   .timeline {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-    gap: 3em !important;
-    min-width: unset !important;
-    padding-left: 2.5em !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;   /* CRITICAL — removes 900px overflow */
+    gap: 3em;
+    padding-left: 2.5em;
     position: relative;
   }
 
-  /* Vertical timeline line */
-  .timeline::before {
-    top: 0 !important;
-    left: 20px !important;
-    width: 4px !important;
-    height: 100% !important;
-    transform: none !important;
-  }
-
-  /* Bigger clickable dots for touch */
-  .timeline-event {
-    width: 28px !important;
-    height: 28px !important;
-    margin-left: 6px !important;
-  }
-
-  /* Move year text to the right of dot */
-  .timeline-event::after {
-    top: 50% !important;
-    left: 60px !important;
-    transform: translateY(-50%) !important;
-    font-size: 1rem !important;
-  }
-
-  /* Disable hover scaling on touch devices */
-  .timeline-event:hover {
-    transform: none !important;
-  }
-
-  /* Detail text spacing */
-  #timeline-detail {
-    margin-top: 2em !important;
-    font-size: 1.05rem !important;
-    padding: 1em !important;
-  }
-}
-
-/* Smaller phones refinement */
-@media (max-width: 600px) {
-
-  .timeline {
-    padding-left: 2em !important;
-  }
-
-  .timeline-event::after {
-    left: 55px !important;
-    font-size: 0.95rem !important;
-  }
-
-}
-
-/* ===================================================== */
-/* RESPONSIVE TIMELINE FIX — NO SIDE SCROLL */
-/* ===================================================== */
-
-@media (max-width: 1024px) {
-
-  /* Remove horizontal scroll */
-  .timeline-container {
-    overflow-x: hidden !important;
-  }
-
-  /* Convert to vertical timeline */
-  .timeline {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 3em !important;
-    width: 100% !important;
-    min-width: unset !important;   /* Removes 900px issue */
-    padding-left: 2.5em !important;
-    position: relative;
-  }
-
-  /* Vertical line */
+  /* Create vertical line */
   .timeline::before {
     content: '';
     position: absolute;
@@ -981,46 +910,46 @@ section.fade-in,
     transform: none;
   }
 
-  /* Bigger clickable dots */
+  /* Make dots bigger for touch */
   .timeline-event {
-    width: 28px !important;
-    height: 28px !important;
-    margin-left: 6px !important;
+    width: 28px;
+    height: 28px;
+    margin-left: 6px;
   }
 
-  /* Move year text to right side */
+  /* Move year text to right */
   .timeline-event::after {
-    top: 50% !important;
-    left: 60px !important;
-    transform: translateY(-50%) !important;
-    font-size: 1rem !important;
+    top: 50%;
+    left: 60px;
+    transform: translateY(-50%);
+    font-size: 1rem;
   }
 
   /* Disable hover scaling */
   .timeline-event:hover {
-    transform: none !important;
+    transform: none;
   }
 
-  /* Detail section styling */
+  /* Improve detail spacing */
   #timeline-detail {
-    margin-top: 2em !important;
-    font-size: 1.05rem !important;
-    padding: 1em !important;
-    text-align: left !important;
+    margin-top: 2em;
+    font-size: 1.05rem;
+    padding: 1em;
+    text-align: left;
   }
 }
 
-/* Extra small phone refinement */
+/* Smaller phones */
 @media (max-width: 600px) {
 
   .timeline {
-    padding-left: 2em !important;
-    gap: 2.5em !important;
+    padding-left: 2em;
+    gap: 2.5em;
   }
 
   .timeline-event::after {
-    left: 55px !important;
-    font-size: 0.95rem !important;
+    left: 55px;
+    font-size: 0.95rem;
   }
 
 }
