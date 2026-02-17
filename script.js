@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  // Tell CSS that JS loaded successfully
-  document.body.classList.add("js-enabled");
-
   // -----------------------
   // Mobile nav toggle
   // -----------------------
@@ -37,20 +34,23 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // -----------------------
-  // Fade-in animation on scroll
+  // ULTRA SAFE Fade-in animation
   // -----------------------
 
   const faders = document.querySelectorAll("section, .card");
 
+  // Hide elements ONLY after JS loads
+  faders.forEach(el => el.classList.add("fade-hidden"));
+
   if ("IntersectionObserver" in window) {
 
-    const appearOnScroll = new IntersectionObserver(function(
-      entries,
-      observer
-    ) {
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
+
+        entry.target.classList.remove("fade-hidden");
         entry.target.classList.add("fade-in");
+
         observer.unobserve(entry.target);
       });
     }, {
@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   } else {
-    // Fallback if IntersectionObserver fails
+    // If IntersectionObserver fails, show everything
     faders.forEach(fader => {
-      fader.classList.add("fade-in");
+      fader.classList.remove("fade-hidden");
     });
   }
 
@@ -111,9 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------
+  // -----------------------
   // Timeline (Desktop hover + Mobile tap)
-  // ---------
+  // -----------------------
 
   const timelineEvents = document.querySelectorAll('.timeline-event');
   const detailBox = document.getElementById('timeline-detail');
@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     timelineEvents.forEach(event => {
 
+      // Desktop hover
       event.addEventListener('mouseenter', () => {
         detailBox.textContent =
           `${event.dataset.year}: ${event.dataset.detail}`;
@@ -132,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
           'Hover or tap a year to see details';
       });
 
+      // Mobile tap
       event.addEventListener('click', () => {
         detailBox.textContent =
           `${event.dataset.year}: ${event.dataset.detail}`;
