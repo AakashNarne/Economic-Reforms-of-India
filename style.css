@@ -888,7 +888,7 @@ section.fade-in,
 }
 
 /* ===================================================== */
-/* MINIMAL SNAKE TIMELINE — MOBILE & TABLET */
+/* TRUE MINIMAL SNAKE TIMELINE — MOBILE & TABLET */
 /* ===================================================== */
 
 @media (max-width: 1024px) {
@@ -901,126 +901,90 @@ section.fade-in,
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 4.5em;
-    width: 100%;
+    gap: 5em;
     padding: 3em 0;
+    width: 100%;
     min-width: 0;
   }
 
-  /* Vertical center guide line (subtle) */
+  /* REMOVE ANY PREVIOUS LINES */
   .timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: #ddd;
+    display: none !important;
   }
 
   /* Base circle */
   .timeline-event {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     background: #fff;
     border: 3px solid #000;
     border-radius: 50%;
     position: relative;
     z-index: 2;
-    transition: transform 0.2s ease;
   }
 
-  /* Alternate positioning */
+  /* Snake positioning */
   .timeline-event:nth-child(odd) {
-    align-self: flex-start;
-    margin-left: 8%;
+    margin-left: 10%;
   }
 
   .timeline-event:nth-child(even) {
-    align-self: flex-end;
-    margin-right: 8%;
+    margin-left: 60%;
   }
 
-  /* Horizontal connector lines (creates snake look) */
-  .timeline-event:nth-child(odd)::before {
+  /* Curved connectors */
+  .timeline-event:not(:last-child)::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 100%;
-    width: 40px;
-    height: 2px;
-    background: #000;
-    transform: translateY(-50%);
+    width: 120px;
+    height: 120px;
+    border-bottom: 3px solid #000;
+    border-radius: 0 0 120px 120px;
+    top: 24px;
+  }
+
+  /* Curve direction alternates */
+  .timeline-event:nth-child(odd)::before {
+    left: 0;
   }
 
   .timeline-event:nth-child(even)::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    width: 40px;
-    height: 2px;
-    background: #000;
-    transform: translateY(-50%);
+    right: 0;
+    transform: scaleX(-1);
   }
 
   /* Year text */
-  .timeline-event:nth-child(odd)::after {
+  .timeline-event::after {
     content: attr(data-year);
     position: absolute;
-    left: 60px;
     top: 50%;
     transform: translateY(-50%);
     font-weight: 600;
     font-size: 1rem;
     white-space: nowrap;
+  }
+
+  .timeline-event:nth-child(odd)::after {
+    left: 40px;
   }
 
   .timeline-event:nth-child(even)::after {
-    content: attr(data-year);
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-weight: 600;
-    font-size: 1rem;
-    white-space: nowrap;
+    right: 40px;
     text-align: right;
   }
 
-  /* Minimal hover */
-  .timeline-event:hover {
-    transform: scale(1.15);
-  }
-
-  /* Detail box remains clean */
+  /* Detail box */
   #timeline-detail {
-    margin-top: 2.5em;
+    margin-top: 3em;
     padding: 1.2em;
     background: #fff;
     border: 1px solid #eee;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: none;
     font-size: 1rem;
     line-height: 1.6;
     max-width: 92%;
     text-align: center;
-  }
-
-}
-
-/* Smaller phones */
-@media (max-width: 600px) {
-
-  .timeline-event {
-    width: 22px;
-    height: 22px;
-  }
-
-  .timeline-event:nth-child(odd)::after,
-  .timeline-event:nth-child(even)::after {
-    font-size: 0.95rem;
   }
 
 }
